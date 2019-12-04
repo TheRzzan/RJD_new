@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/core-db-impl" />
             <option value="$PROJECT_DIR$/core-repos-api" />
             <option value="$PROJECT_DIR$/core-repos-impl" />
+            <option value="$PROJECT_DIR$/feature-contacts-api" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
