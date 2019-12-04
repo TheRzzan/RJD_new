@@ -1,1 +1,1 @@
-include ':app', ':core-db-api', ':core-db-impl', ':core-repos-api'
+include ':app', ':core-db-api', ':core-db-impl', ':core-repos-api', ':core-repos-impl'
