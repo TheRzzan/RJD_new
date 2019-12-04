@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/core-repos-api" />
             <option value="$PROJECT_DIR$/core-repos-impl" />
             <option value="$PROJECT_DIR$/feature-contacts-api" />
+            <option value="$PROJECT_DIR$/feature-contacts-impl" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

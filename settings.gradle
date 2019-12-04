@@ -1,1 +1,1 @@
-include ':app', ':core-db-api', ':core-db-impl', ':core-repos-api', ':core-repos-impl', ':feature-contacts-api'
+include ':app', ':core-db-api', ':core-db-impl', ':core-repos-api', ':core-repos-impl', ':feature-contacts-api', ':feature-contacts-impl'
