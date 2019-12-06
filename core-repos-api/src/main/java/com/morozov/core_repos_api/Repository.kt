@@ -7,7 +7,7 @@ interface Repository {
 
     fun getItemsCount(): Single<Int>
     fun getItemAt(position: Int): Single<ContactModel>
-    fun getAllItems(position: Int): Observable<List<ContactModel>>
+    fun getAllItems(): Observable<List<ContactModel>>
     fun removeItem(item: ContactModel): Single<Boolean>
     fun addItem(item: ContactModel): Single<Boolean>
     fun updateItem(item: ContactModel): Single<Boolean>

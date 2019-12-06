@@ -22,7 +22,7 @@ class RepositoryImpl(private val dao: Dao): Repository {
         }
     }
 
-    override fun getAllItems(position: Int): Observable<List<ContactModel>> {
+    override fun getAllItems(): Observable<List<ContactModel>> {
         return Observable.create{ subscriber ->
             val listContact = mutableListOf<ContactModel>()
             for (i in 0..dao.getItemsCount()) {
