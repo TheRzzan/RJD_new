@@ -1,6 +1,7 @@
 package com.morozov.feature_contacts_impl.ui.fragments.contacts
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -10,6 +11,7 @@ import com.morozov.feature_contacts_impl.ui.adapters.item_touch_helper.ItemTouch
 import com.morozov.feature_contacts_impl.ui.fragments.MainObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 @SuppressLint("CheckResult")
 class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
@@ -18,6 +20,49 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
     private val contactsList: MutableList<ContactModel> = mutableListOf()
 
     init {
+//        val repository = MainObject.repository
+//        if (repository != null) {
+//            repository.addItem(
+//                ContactModel("Jeka", "Horfal", "", "44444",
+//                    true, "", null, Date(), null, false)
+//            )
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe({}, {})
+//
+//            repository.addItem(
+//                ContactModel("Sasha", "Fafin", "Lol", "12345",
+//                    true, "", null, Date(), null, false)
+//            )
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe({}, {})
+//
+//            repository.addItem(
+//                ContactModel("Aza", "Braza", "", "11111",
+//                    false, "", "Golem", Date(), null, false)
+//            )
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe({}, {})
+//
+//            repository.addItem(
+//                ContactModel("Koko", "Jambo", "", "222222",
+//                    false, "", "Garlem", Date(), null, false)
+//            )
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe({}, {})
+//
+//            repository.addItem(
+//                ContactModel("Hihi", "Hahi", "", "33333",
+//                    false, "", "Durko", Date(), null, false)
+//            )
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe({}, {})
+//        }
+
         showAll()
     }
 
@@ -76,6 +121,7 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
                     {
                         if (it) {
                             lastRemovePos = position
+                            removedModel = contactsList[position]
                             contactsList.removeAt(position)
                             contactsLiveData.value = ViewCommand(command.personLabel, ViewCommand.Command.UPDATE_OLD_LIST, contactsList)
                         }

@@ -37,12 +37,19 @@ class ContactsFragment: Fragment(), OnItemClickListener {
         } ?: throw Exception("Invalid Activity")
 
         viewModel.getContacts().observeForever {
+
+            if (it.data != null && it.data.isNotEmpty())
+                textEmpty.visibility = View.GONE
+            else
+                textEmpty.visibility = View.VISIBLE
+
             when (it.command) {
                 ContactsViewModel.ViewCommand.Command.UPDATE_OLD_LIST -> {
                     adapter.notifyDataSetChanged()
                 }
                 ContactsViewModel.ViewCommand.Command.SHOW_NEW_LIST -> {
                     it.data?.let { it1 -> adapter.setData(it1) }
+                    adapter.notifyDataSetChanged()
                 }
             }
 

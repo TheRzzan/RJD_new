@@ -3,11 +3,14 @@ package com.morozov.rjd_new
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.morozov.core_repos_api.ContactModel
+import com.morozov.core_repos_api.Repository
 import com.morozov.feature_contacts_api.ContactsFeatureApi
 import com.morozov.feature_contacts_api.FeatureContactsCallback
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
+import java.util.*
 
 class MainActivity : AppCompatActivity(), KodeinAware {
 
@@ -37,5 +40,11 @@ class MainActivity : AppCompatActivity(), KodeinAware {
                     Toast.makeText(applicationContext, "Add colleague", Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1)
+            supportFragmentManager.popBackStack()
+        super.onBackPressed()
     }
 }
