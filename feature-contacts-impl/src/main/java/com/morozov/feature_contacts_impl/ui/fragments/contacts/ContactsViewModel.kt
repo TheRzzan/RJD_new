@@ -55,8 +55,8 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
 
     private fun observeList(onNext: Observer<List<ContactModel>>) {
         MainObject.repository?.getAllItems()
-            ?.observeOn(Schedulers.io())
-            ?.subscribeOn(AndroidSchedulers.mainThread())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
             ?.subscribe{
                 onNext.onChanged(it)
             }
@@ -70,8 +70,8 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
         val command = contactsLiveData.value
         if (command != null) {
             MainObject.repository?.removeItem(contactsList[position])
-                ?.observeOn(Schedulers.io())
-                ?.subscribeOn(AndroidSchedulers.mainThread())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeOn(Schedulers.io())
                 ?.subscribe(
                     {
                         if (it) {
@@ -91,8 +91,8 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
         val command = contactsLiveData.value
         if (command != null) {
             MainObject.repository?.addItem(removedModel)
-                ?.observeOn(Schedulers.io())
-                ?.subscribeOn(AndroidSchedulers.mainThread())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeOn(Schedulers.io())
                 ?.subscribe(
                     {
                         if (it) {
