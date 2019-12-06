@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -87,8 +88,13 @@ class ContactsFragment: Fragment(), OnItemClickListener {
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(recyclerContacts)
 
+        var isAddClicked = true
         buttonAdd.setOnClickListener {
-
+            if (isAddClicked)
+                showButtonsAdd()
+            else
+                hideButtonsAdd()
+            isAddClicked = !isAddClicked
         }
 
         buttonFriend.setOnClickListener {
@@ -98,6 +104,44 @@ class ContactsFragment: Fragment(), OnItemClickListener {
         buttonColleague.setOnClickListener {
             MainObject.callback?.onAddColleagueClicked()
         }
+    }
+
+    private fun showButtonsAdd() {
+        val scaleUp = AnimationUtils.loadAnimation(context, R.anim.scale_up)
+        scaleUp.fillAfter = true
+        scaleUp.isFillEnabled = true
+
+        val animRotRight = AnimationUtils.loadAnimation(context, R.anim.rotate_center_right)
+        animRotRight.fillAfter = true
+        animRotRight.isFillEnabled = true
+
+        buttonFriend.visibility = View.VISIBLE
+        buttonColleague.visibility = View.VISIBLE
+        buttonFriend.isEnabled = true
+        buttonColleague.isEnabled = true
+
+        buttonFriend.startAnimation(scaleUp)
+        buttonColleague.startAnimation(scaleUp)
+        buttonAdd.startAnimation(animRotRight)
+    }
+
+    private fun hideButtonsAdd() {
+        val scaleDown = AnimationUtils.loadAnimation(context, R.anim.scale_down)
+        scaleDown.fillAfter = true
+        scaleDown.isFillEnabled = true
+
+        val animRotLeft = AnimationUtils.loadAnimation(context, R.anim.rotate_center_left)
+        animRotLeft.fillAfter = true
+        animRotLeft.isFillEnabled = true
+
+        buttonFriend.startAnimation(scaleDown)
+        buttonColleague.startAnimation(scaleDown)
+        buttonAdd.startAnimation(animRotLeft)
+
+        buttonFriend.visibility = View.GONE
+        buttonColleague.visibility = View.GONE
+        buttonFriend.isEnabled = false
+        buttonColleague.isEnabled = false
     }
 
     // OnItemClickListener impl
