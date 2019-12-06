@@ -12,9 +12,14 @@ import com.morozov.feature_contacts_impl.R
 import com.morozov.feature_contacts_impl.ui.adapters.contacts.ContactsAdapter
 import com.morozov.feature_contacts_impl.ui.adapters.item_touch_helper.ItemTouchHelperClass
 import com.morozov.feature_contacts_impl.ui.adapters.listeners.OnItemClickListener
+import com.morozov.feature_contacts_impl.ui.fragments.MainObject
 import kotlinx.android.synthetic.main.fragment_contacts_list.*
 
 class ContactsFragment: Fragment(), OnItemClickListener {
+
+    companion object {
+        const val TAG = "ContactsFragment_TAG"
+    }
 
     private lateinit var viewModel: ContactsViewModel
 
@@ -87,16 +92,16 @@ class ContactsFragment: Fragment(), OnItemClickListener {
         }
 
         buttonFriend.setOnClickListener {
-
+            MainObject.callback?.onAddFriendClicked()
         }
 
         buttonColleague.setOnClickListener {
-
+            MainObject.callback?.onAddColleagueClicked()
         }
     }
 
     // OnItemClickListener impl
     override fun onItemClick(view: View?, position: Int) {
-
+        MainObject.callback?.onContactSelected(position)
     }
 }
