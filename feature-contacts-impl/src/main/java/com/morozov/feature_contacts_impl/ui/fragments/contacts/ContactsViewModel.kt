@@ -1,7 +1,6 @@
 package com.morozov.feature_contacts_impl.ui.fragments.contacts
 
 import android.annotation.SuppressLint
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -11,7 +10,6 @@ import com.morozov.feature_contacts_impl.ui.adapters.item_touch_helper.ItemTouch
 import com.morozov.feature_contacts_impl.ui.fragments.MainObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 
 @SuppressLint("CheckResult")
 class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
@@ -108,7 +106,7 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
     }
 
     // ItemTouchHelperCallback impl
-    var lastRemovePos: Int = -1
+    private var lastRemovePos: Int = -1
     private lateinit var removedModel: ContactModel
 
     override fun removeItem(position: Int) {

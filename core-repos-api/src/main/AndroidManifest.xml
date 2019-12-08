@@ -1,2 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.morozov.core_repos_api"/>
+<manifest
+        package="com.morozov.core_repos_api"/>

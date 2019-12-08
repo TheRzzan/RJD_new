@@ -24,7 +24,7 @@ class ContactsFragment: Fragment(), OnItemClickListener {
 
     private lateinit var viewModel: ContactsViewModel
 
-    lateinit var adapter: ContactsAdapter
+    private lateinit var adapter: ContactsAdapter
     lateinit var itemTouchHelper: ItemTouchHelper
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =

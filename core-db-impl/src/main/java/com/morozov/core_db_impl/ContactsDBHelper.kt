@@ -27,11 +27,11 @@ class ContactsDBHelper(context: Context): SQLiteOpenHelper(context, TABLE_NAME, 
         const val COLUMN_POSITION = "column_position"
         const val COLUMN_PHOTO = "column_photo"
 
-        private val TEXT_TYPE = " TEXT"
-        private val BOOL_TYPE = " BOOLEAN"
-        private val COMMA_SEP = ","
+        private const val TEXT_TYPE = " TEXT"
+        private const val BOOL_TYPE = " BOOLEAN"
+        private const val COMMA_SEP = ","
 
-        private val SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + " (" +
+        private const val SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + " (" +
                 _ID + " INTEGER PRIMARY KEY" + COMMA_SEP +
                 COLUMN_NAME +        TEXT_TYPE + COMMA_SEP +
                 COLUMN_FAMILU +      TEXT_TYPE + COMMA_SEP +
@@ -43,7 +43,7 @@ class ContactsDBHelper(context: Context): SQLiteOpenHelper(context, TABLE_NAME, 
                 COLUMN_PHOTO +       TEXT_TYPE + COMMA_SEP +
                 COLUMN_POSITION +    TEXT_TYPE + ")"
 
-        private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TABLE_NAME
+        private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS $TABLE_NAME"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -138,8 +138,6 @@ class ContactsDBHelper(context: Context): SQLiteOpenHelper(context, TABLE_NAME, 
 
         cv.put(COLUMN_POSITION, contact.position)
 
-        val rowId = db.insert(TABLE_NAME, null, cv)
-
-        return rowId
+        return db.insert(TABLE_NAME, null, cv)
     }
 }

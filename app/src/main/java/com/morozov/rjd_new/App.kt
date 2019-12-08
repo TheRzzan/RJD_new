@@ -12,7 +12,6 @@ import com.morozov.feature_contacts_impl.start.ContactsStarterImpl
 import org.kodein.di.Kodein
 import org.kodein.di.LazyKodein
 import org.kodein.di.generic.bind
-import org.kodein.di.generic.factory
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 

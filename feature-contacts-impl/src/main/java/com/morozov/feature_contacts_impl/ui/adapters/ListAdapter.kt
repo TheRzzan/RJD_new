@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class ListAdapter<T, VH : RecyclerView.ViewHolder>: RecyclerView.Adapter<VH>() {
 
-    private var data: List<T> = ArrayList<T>()
+    private var data: List<T> = ArrayList()
 
     protected fun data(): List<T> = data
 

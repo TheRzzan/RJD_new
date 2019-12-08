@@ -8,7 +8,7 @@
 
     <TextView
             android:layout_centerInParent="true"
-            android:text="Вы пока не добавляли контакты"
+            android:text="@string/no_added_contacts"
             android:textColor="@color/header_text"
             style="@style/TextView.Primary" android:id="@+id/textEmpty"/>
 
@@ -23,7 +23,7 @@
 
         <TextView
                 android:id="@+id/textAll"
-                android:text="Все"
+                android:text="@string/all"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 style="@style/TextView.Secondary"/>
@@ -32,7 +32,7 @@
                 android:id="@+id/textFriends"
                 android:layout_toEndOf="@+id/textAll"
                 android:layout_marginStart="@dimen/activity_long_horizontal_margin"
-                android:text="Друзья"
+                android:text="@string/friends"
                 android:textStyle="bold"
                 style="@style/TextView.Secondary"/>
 
@@ -40,7 +40,7 @@
                 android:id="@+id/textColleagues"
                 android:layout_toEndOf="@+id/textFriends"
                 android:layout_marginStart="@dimen/activity_long_horizontal_margin"
-                android:text="Коллеги"
+                android:text="@string/colleagues"
                 android:textStyle="bold"
                 style="@style/TextView.Secondary"/>
     </RelativeLayout>
@@ -68,7 +68,7 @@
         <Button
                 style="@style/FABStyle"
                 android:background="@drawable/fab_round"
-                android:text="Д"
+                android:text="@string/friends_short"
                 android:layout_above="@+id/buttonAdd"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -78,7 +78,7 @@
         <Button
                 style="@style/FABStyle"
                 android:background="@drawable/fab_round"
-                android:text="К"
+                android:text="@string/colleagues_short"
                 android:layout_above="@+id/buttonFriend"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"

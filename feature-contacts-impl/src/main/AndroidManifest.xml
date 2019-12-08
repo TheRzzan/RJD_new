@@ -1,2 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.morozov.feature_contacts_impl"/>
+<manifest
+        package="com.morozov.feature_contacts_impl"/>
