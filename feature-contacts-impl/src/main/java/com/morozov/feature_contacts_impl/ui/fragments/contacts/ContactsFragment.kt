@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,7 +74,7 @@ class ContactsFragment: Fragment(), OnItemClickListener {
             viewModel.showColleagues()
         }
 
-        viewModel.getContacts().observeForever {
+        viewModel.getContacts().observe(this, Observer {
 
             if (it.data != null && it.data.isNotEmpty())
                 textEmpty.visibility = View.GONE
@@ -108,7 +109,7 @@ class ContactsFragment: Fragment(), OnItemClickListener {
                     colorPrimary?.let { it1 -> textAll.setTextColor(it1) }
                 }
             }
-        }
+        })
     }
 
     private fun showButtonsAdd() {
