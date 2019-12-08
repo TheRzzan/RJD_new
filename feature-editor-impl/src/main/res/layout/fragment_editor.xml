@@ -49,7 +49,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="@dimen/activity_short_vertical_margin"
                     android:layout_marginEnd="@dimen/activity_short_horizontal_margin"
-                    android:id="@+id/buttonCheck" android:visibility="invisible"/>
+                    android:id="@+id/buttonCheck"
+                    android:visibility="@{handler.isSaveEnabled == true ? View.VISIBLE : View.INVISIBLE}"/>
 
             <View
                     android:id="@+id/lineSeparator"
@@ -99,12 +100,14 @@
                 <EditText
                         android:hint="Имя"
                         android:text="@={contactModel.name}"
+                        android:onTextChanged="@{(ch, st, bf, ct) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:textColorHint="@color/grey_color"
                         android:id="@+id/editName" android:maxLength="50"/>
                 <EditText
                         android:hint="Фамилия"
                         android:text="@={contactModel.family}"
+                        android:onTextChanged="@{(ch, st, bf, ct) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:textColorHint="@color/grey_color"
                         android:id="@+id/editFamily" android:maxLength="16"/>
@@ -117,6 +120,7 @@
                 <EditText
                         android:hint="Телефон"
                         android:text="@={contactModel.phoneNum}"
+                        android:onTextChanged="@{(ch, st, bf, ct) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:inputType="number"
                         android:textColorHint="@color/grey_color"
