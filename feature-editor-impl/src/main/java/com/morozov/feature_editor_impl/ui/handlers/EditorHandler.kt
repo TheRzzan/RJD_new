@@ -7,9 +7,14 @@ import com.morozov.core_repos_api.ContactModel
 
 abstract class EditorHandler(private val model: ContactModel) {
 
-    val photo: ObservableField<Drawable?> = ObservableField(null as Drawable)
-    val birthday: ObservableField<String?> = ObservableField(null as String)
-    val isSaveEnabled: ObservableField<Boolean> = ObservableField(false)
+    val photo: ObservableField<Drawable?> = ObservableField()
+    val birthday: ObservableField<String?> = ObservableField()
+    val isSaveEnabled: ObservableField<Boolean> = ObservableField()
+
+    init {
+        birthday.set(null)
+        isSaveEnabled.set(false)
+    }
 
     fun onSaveInDeviceEnabled(check: Boolean) {
         model.saveInDevice = check

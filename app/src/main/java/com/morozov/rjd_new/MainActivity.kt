@@ -5,6 +5,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.morozov.feature_contacts_api.ContactsFeatureApi
 import com.morozov.feature_contacts_api.FeatureContactsCallback
+import com.morozov.feature_editor_api.EditorFeatureApi
+import com.morozov.feature_editor_api.FeatureEditorCallback
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     override val kodein: Kodein = App.kodein
 
     private val contactsFeatureApi: ContactsFeatureApi by instance()
+    private val editorFeatureApi: EditorFeatureApi by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,15 +29,33 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         contactsFeatureApi.contactsStarter().start(supportFragmentManager, R.id.contentMain,
             object : FeatureContactsCallback {
                 override fun onContactSelected(position: Int) {
-                    Toast.makeText(applicationContext, "Selected $position", Toast.LENGTH_SHORT).show()
+                    startEditorFeature("123321")
                 }
 
                 override fun onAddFriendClicked() {
-                    Toast.makeText(applicationContext, "Add friend", Toast.LENGTH_SHORT).show()
+                    startEditorFeature(true)
                 }
 
                 override fun onAddColleagueClicked() {
-                    Toast.makeText(applicationContext, "Add colleague", Toast.LENGTH_SHORT).show()
+                    startEditorFeature(false)
+                }
+            })
+    }
+
+    private fun startEditorFeature(isFriend: Boolean) {
+        editorFeatureApi.editorStarter().start(isFriend, supportFragmentManager, R.id.contentMain,
+            object : FeatureEditorCallback {
+                override fun onFinished() {
+                    startContactsListFeature()
+                }
+            })
+    }
+
+    private fun startEditorFeature(contactNumber: String) {
+        editorFeatureApi.editorStarter().start(contactNumber, supportFragmentManager, R.id.contentMain,
+            object : FeatureEditorCallback {
+                override fun onFinished() {
+                    startContactsListFeature()
                 }
             })
     }
@@ -43,5 +64,11 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         if (supportFragmentManager.backStackEntryCount == 1)
             supportFragmentManager.popBackStack()
         super.onBackPressed()
+    }
+
+    private fun clearBackStack() {
+        for (i in 0..supportFragmentManager.backStackEntryCount) {
+            supportFragmentManager.popBackStack()
+        }
     }
 }

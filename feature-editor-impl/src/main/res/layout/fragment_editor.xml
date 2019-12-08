@@ -77,7 +77,7 @@
                         android:layout_width="@dimen/contact_photo_big_size"
                         android:layout_height="@dimen/contact_photo_big_size"
                         android:onClick="@{(view) -> handler.onSelectPhotoClicked(view)}"
-                        android:src="@{handler.photo != null ? handler.photo : color/colorPrimary}"/>
+                        android:src="@color/colorPrimary"/>
 
                 <ImageView
                         android:id="@+id/imageCamera"

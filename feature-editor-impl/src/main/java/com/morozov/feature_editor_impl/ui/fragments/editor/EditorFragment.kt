@@ -24,7 +24,7 @@ class EditorFragment: Fragment() {
 
     init {
         if (MainObject.phoneNumber != null) {
-            mContactModel = ContactModel("", "", "", "", MainObject.isFriend!!,
+            mContactModel = ContactModel("Tests1", "Tests2", "Tests3", "123321", true,
                 "", "", null, null, true)
         } else {
             mContactModel = ContactModel("", "", "", "", MainObject.isFriend!!,
