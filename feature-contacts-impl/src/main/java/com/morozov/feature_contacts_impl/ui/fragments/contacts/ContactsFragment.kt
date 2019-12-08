@@ -35,6 +35,43 @@ class ContactsFragment: Fragment(), OnItemClickListener {
         viewModel = activity?.run {
             ViewModelProviders.of(this)[ContactsViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter = ContactsAdapter(this, viewModel, relativeContacts)
+        recyclerContacts.adapter = adapter
+        recyclerContacts.layoutManager = LinearLayoutManager(context)
+
+        val callback = ItemTouchHelperClass(adapter)
+        itemTouchHelper = ItemTouchHelper(callback)
+        itemTouchHelper.attachToRecyclerView(recyclerContacts)
+
+        var isAddClicked = true
+        buttonAdd.setOnClickListener {
+            if (isAddClicked)
+                showButtonsAdd()
+            else
+                hideButtonsAdd()
+            isAddClicked = !isAddClicked
+        }
+        buttonFriend.setOnClickListener {
+            MainObject.callback?.onAddFriendClicked()
+        }
+        buttonColleague.setOnClickListener {
+            MainObject.callback?.onAddColleagueClicked()
+        }
+
+        textAll.setOnClickListener {
+            viewModel.showAll()
+        }
+        textFriends.setOnClickListener {
+            viewModel.showFriends()
+        }
+        textColleagues.setOnClickListener {
+            viewModel.showColleagues()
+        }
 
         viewModel.getContacts().observeForever {
 
@@ -71,45 +108,6 @@ class ContactsFragment: Fragment(), OnItemClickListener {
                     colorPrimary?.let { it1 -> textAll.setTextColor(it1) }
                 }
             }
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        textAll.setOnClickListener {
-            viewModel.showAll()
-        }
-        textFriends.setOnClickListener {
-            viewModel.showFriends()
-        }
-        textColleagues.setOnClickListener {
-            viewModel.showColleagues()
-        }
-
-        adapter = ContactsAdapter(this, viewModel, relativeContacts)
-        recyclerContacts.adapter = adapter
-        recyclerContacts.layoutManager = LinearLayoutManager(context)
-
-        val callback = ItemTouchHelperClass(adapter)
-        itemTouchHelper = ItemTouchHelper(callback)
-        itemTouchHelper.attachToRecyclerView(recyclerContacts)
-
-        var isAddClicked = true
-        buttonAdd.setOnClickListener {
-            if (isAddClicked)
-                showButtonsAdd()
-            else
-                hideButtonsAdd()
-            isAddClicked = !isAddClicked
-        }
-
-        buttonFriend.setOnClickListener {
-            MainObject.callback?.onAddFriendClicked()
-        }
-
-        buttonColleague.setOnClickListener {
-            MainObject.callback?.onAddColleagueClicked()
         }
     }
 

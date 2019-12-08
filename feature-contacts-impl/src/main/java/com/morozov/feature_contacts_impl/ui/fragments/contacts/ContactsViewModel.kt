@@ -107,9 +107,11 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
         MainObject.repository?.getAllItems()
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
-            ?.subscribe{
+            ?.subscribe({
                 onNext.onChanged(it)
-            }
+            },{
+                it.printStackTrace()
+            })
     }
 
     // ItemTouchHelperCallback impl
