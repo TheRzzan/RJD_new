@@ -22,6 +22,22 @@ class RepositoryImpl(private val dao: Dao): Repository {
         }
     }
 
+    override fun getItemByPhone(phone: String): Single<ContactModel> {
+        return Single.fromCallable {
+            var model: ContactModel? = null
+
+            for (i in 0..dao.getItemsCount()) {
+                val tmpModel = dao.getItemAt(i) ?: continue
+                if (phone == tmpModel.phoneNum){
+                    model = ContactModelConverter.convertFrom(tmpModel)
+                    break
+                }
+            }
+
+            return@fromCallable model
+        }
+    }
+
     override fun getAllItems(): Observable<List<ContactModel>> {
         return Observable.create{ subscriber ->
             val listContact = mutableListOf<ContactModel>()

@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     private fun startContactsListFeature() {
         contactsFeatureApi.contactsStarter().start(supportFragmentManager, R.id.contentMain,
             object : FeatureContactsCallback {
-                override fun onContactSelected(position: Int) {
-                    startEditorFeature("123321")
+                override fun onContactSelected(phone: String, position: Int) {
+                    startEditorFeature(phone)
                 }
 
                 override fun onAddFriendClicked() {

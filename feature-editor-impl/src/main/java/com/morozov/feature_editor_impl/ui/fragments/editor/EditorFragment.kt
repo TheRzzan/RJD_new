@@ -1,5 +1,6 @@
 package com.morozov.feature_editor_impl.ui.fragments.editor
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,21 +12,33 @@ import com.morozov.feature_editor_impl.R
 import com.morozov.feature_editor_impl.databinding.FragmentEditorBinding
 import com.morozov.feature_editor_impl.ui.fragments.MainObject
 import com.morozov.feature_editor_impl.ui.handlers.EditorHandler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_editor.*
 
+@SuppressLint("CheckResult")
 class EditorFragment: Fragment() {
 
     companion object {
         const val TAG = "EditorFragment_TAG"
     }
 
-    private val mContactModel: ContactModel
+    private lateinit var mContactModel: ContactModel
     private val mHandler: EditorHandler
 
     init {
         if (MainObject.phoneNumber != null) {
-            mContactModel = ContactModel("Tests1", "Tests2", "Tests3", "123321", true,
-                "", "", null, null, true)
+            val phoneNumber = MainObject.phoneNumber
+            if (phoneNumber != null){
+                MainObject.repository?.getItemByPhone(phoneNumber)
+                    ?.subscribe({
+                        mContactModel = it
+                    },{
+                        it.printStackTrace()
+                    })
+            } else {
+                mContactModel = ContactModel("NO", "", "", "", MainObject.isFriend!!,
+                    "", "", null, null, false)
+            }
         } else {
             mContactModel = ContactModel("", "", "", "", MainObject.isFriend!!,
                 "", "", null, null, false)

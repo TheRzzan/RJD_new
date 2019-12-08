@@ -153,6 +153,8 @@ class ContactsFragment: Fragment(), OnItemClickListener {
 
     // OnItemClickListener impl
     override fun onItemClick(view: View?, position: Int) {
-        MainObject.callback?.onContactSelected(position)
+        val contactModel = viewModel.getItemByPosition(position)
+        if (contactModel != null)
+            MainObject.callback?.onContactSelected(contactModel.phoneNum, position)
     }
 }

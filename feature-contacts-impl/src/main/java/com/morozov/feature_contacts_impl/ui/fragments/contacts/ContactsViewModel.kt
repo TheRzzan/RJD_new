@@ -66,6 +66,13 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
 
     fun getContacts(): LiveData<ViewCommand> = contactsLiveData
 
+    fun getItemByPosition(position: Int): ContactModel? {
+        return if (position < 0 || position >= contactsList.size)
+            null
+        else
+            contactsList[position]
+    }
+
     fun showAll() {
         observeList(Observer {
             contactsList.clear()
