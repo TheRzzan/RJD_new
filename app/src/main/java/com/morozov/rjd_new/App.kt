@@ -9,6 +9,10 @@ import com.morozov.feature_contacts_api.ContactsFeatureApi
 import com.morozov.feature_contacts_api.ContactsStarter
 import com.morozov.feature_contacts_impl.ContactsFeatureImpl
 import com.morozov.feature_contacts_impl.start.ContactsStarterImpl
+import com.morozov.feature_editor_api.EditorFeatureApi
+import com.morozov.feature_editor_api.EditorStarter
+import com.morozov.feature_editor_impl.EditorFeatureImpl
+import com.morozov.feature_editor_impl.start.EditorStarterImpl
 import org.kodein.di.Kodein
 import org.kodein.di.LazyKodein
 import org.kodein.di.generic.bind
@@ -37,10 +41,16 @@ class App: Application() {
             bind<ContactsFeatureApi>() with singleton { ContactsFeatureImpl(instance(), instance()) }
         }
 
+        val fEditorModule = Kodein.Module("FeatureEditor") {
+            bind<EditorStarter>() with singleton { EditorStarterImpl() }
+            bind<EditorFeatureApi>() with singleton { EditorFeatureImpl(instance(), instance()) }
+        }
+
         kodein = Kodein.lazy {
             import(dbModule)
             import(reposModule)
             import(fContactsModule)
+            import(fEditorModule)
         }
     }
 }

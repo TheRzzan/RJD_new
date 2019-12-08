@@ -27,6 +27,8 @@ dependencies {
     implementation project(':core-repos-impl')
     implementation project(':feature-contacts-api')
     implementation project(':feature-contacts-impl')
+    implementation project(':feature-editor-api')
+    implementation project(':feature-editor-impl')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
