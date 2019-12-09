@@ -13,6 +13,7 @@ import com.morozov.feature_editor_impl.databinding.FragmentEditorBinding
 import com.morozov.feature_editor_impl.ui.fragments.MainObject
 import com.morozov.feature_editor_impl.ui.handlers.EditorHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_editor.*
 
 @SuppressLint("CheckResult")
@@ -65,7 +66,19 @@ class EditorFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         buttonCheck.setOnClickListener {
-            MainObject.callback?.onFinished()
+            MainObject.repository?.updateItem(mContactModel)
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeOn(Schedulers.io())
+                ?.subscribe({
+                    if (it)
+                        MainObject.callback?.onFinished()
+                }, {
+                    it.printStackTrace()
+                })
+        }
+
+        buttonCross.setOnClickListener {
+            activity?.onBackPressed()
         }
 
         prepareFragment()

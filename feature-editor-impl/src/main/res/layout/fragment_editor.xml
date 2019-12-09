@@ -100,27 +100,28 @@
                 <EditText
                         android:hint="Имя"
                         android:text="@={contactModel.name}"
-                        android:onTextChanged="@{(ch, st, bf, ct) -> handler.verifyIsReadyToSave()}"
+                        android:afterTextChanged="@{(e) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:textColorHint="@color/grey_color"
                         android:id="@+id/editName" android:maxLength="50"/>
                 <EditText
                         android:hint="Фамилия"
                         android:text="@={contactModel.family}"
-                        android:onTextChanged="@{(ch, st, bf, ct) -> handler.verifyIsReadyToSave()}"
+                        android:afterTextChanged="@{(e) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:textColorHint="@color/grey_color"
                         android:id="@+id/editFamily" android:maxLength="16"/>
                 <EditText
                         android:hint="Отчество"
                         android:text="@={contactModel.surname}"
+                        android:afterTextChanged="@{(e) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:textColorHint="@color/grey_color"
                         android:id="@+id/editSurname" android:maxLength="16"/>
                 <EditText
                         android:hint="Телефон"
                         android:text="@={contactModel.phoneNum}"
-                        android:onTextChanged="@{(ch, st, bf, ct) -> handler.verifyIsReadyToSave()}"
+                        android:afterTextChanged="@{(e) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:inputType="number"
                         android:textColorHint="@color/grey_color"
@@ -129,12 +130,14 @@
                 <EditText
                         android:hint="Должность"
                         android:text="@={contactModel.position}"
+                        android:afterTextChanged="@{(e) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:textColorHint="@color/grey_color"
                         android:id="@+id/editPosition" android:maxLength="30"/>
                 <EditText
                         android:hint="Рабочий тел."
                         android:text="@={contactModel.workPhone}"
+                        android:afterTextChanged="@{(e) -> handler.verifyIsReadyToSave()}"
                         style="@style/EditTextStyle"
                         android:inputType="number"
                         android:textColorHint="@color/grey_color"
