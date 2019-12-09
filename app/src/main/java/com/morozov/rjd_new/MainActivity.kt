@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         editorFeatureApi.editorStarter().start(isFriend, supportFragmentManager, R.id.contentMain,
             object : FeatureEditorCallback {
                 override fun onFinished() {
-                    startContactsListFeature()
+                    onBackPressed()
                 }
             })
     }
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         editorFeatureApi.editorStarter().start(contactNumber, supportFragmentManager, R.id.contentMain,
             object : FeatureEditorCallback {
                 override fun onFinished() {
-                    startContactsListFeature()
+                    onBackPressed()
                 }
             })
     }

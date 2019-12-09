@@ -35,9 +35,6 @@ class EditorFragment: Fragment() {
                     },{
                         it.printStackTrace()
                     })
-            } else {
-                mContactModel = ContactModel("NO", "", "", "", MainObject.isFriend!!,
-                    "", "", null, null, false)
             }
         } else {
             mContactModel = ContactModel("", "", "", "", MainObject.isFriend!!,
@@ -70,5 +67,34 @@ class EditorFragment: Fragment() {
         buttonCheck.setOnClickListener {
             MainObject.callback?.onFinished()
         }
+
+        prepareFragment()
+    }
+
+    private fun prepareFragment() {
+        if (mContactModel.isFriend)
+            prepareForFriend()
+        else
+            prepareForColleague()
+    }
+
+    private fun prepareForFriend() {
+        textHeader.text = resources.getString(R.string.add_friend)
+
+        editPosition.visibility = View.GONE
+        editWorkPhone.visibility = View.GONE
+        relativeDayMonthYear.visibility = View.VISIBLE
+
+        mContactModel.isFriend = true
+    }
+
+    private fun prepareForColleague() {
+        textHeader.text = resources.getString(R.string.add_colleague)
+
+        editPosition.visibility = View.VISIBLE
+        editWorkPhone.visibility = View.VISIBLE
+        relativeDayMonthYear.visibility = View.GONE
+
+        mContactModel.isFriend = false
     }
 }
