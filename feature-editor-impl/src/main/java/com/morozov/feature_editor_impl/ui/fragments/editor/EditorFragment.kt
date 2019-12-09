@@ -66,7 +66,10 @@ class EditorFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         buttonCheck.setOnClickListener {
-            MainObject.repository?.updateItem(mContactModel)
+            if (mHandler.tmpContactModel.phoneNum.isEmpty())
+                mHandler.tmpContactModel.phoneNum = mContactModel.phoneNum
+
+            MainObject.repository?.updateItem(mHandler.tmpContactModel, mContactModel)
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribeOn(Schedulers.io())
                 ?.subscribe({

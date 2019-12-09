@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 
 abstract class EditorHandler(private val model: ContactModel) {
 
-    private val tmpContactModel: ContactModel
+    val tmpContactModel: ContactModel
 
     val photo: ObservableField<Drawable?> = ObservableField()
     val birthday: ObservableField<String?> = ObservableField()

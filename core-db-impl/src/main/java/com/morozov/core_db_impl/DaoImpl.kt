@@ -26,9 +26,9 @@ class DaoImpl(context: Context): Dao {
         return true
     }
 
-    override fun updateItem(item: DbContactModel): Boolean {
-        dbHelper.removeItemWithPhone(item.phoneNum)
-        dbHelper.addContact(item)
+    override fun updateItem(old: DbContactModel, new: DbContactModel): Boolean {
+        dbHelper.removeItemWithPhone(old.phoneNum)
+        dbHelper.addContact(new)
         return true
     }
 }

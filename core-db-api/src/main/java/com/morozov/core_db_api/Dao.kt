@@ -6,5 +6,5 @@ interface Dao {
     fun getItemAt(position: Int): DbContactModel?
     fun removeItem(item: DbContactModel): Boolean
     fun addItem(item: DbContactModel): Boolean
-    fun updateItem(item: DbContactModel): Boolean
+    fun updateItem(old: DbContactModel, new: DbContactModel): Boolean
 }

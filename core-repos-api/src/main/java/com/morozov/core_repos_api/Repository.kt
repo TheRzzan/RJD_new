@@ -11,5 +11,5 @@ interface Repository {
     fun getAllItems(): Observable<List<ContactModel>>
     fun removeItem(item: ContactModel): Single<Boolean>
     fun addItem(item: ContactModel): Single<Boolean>
-    fun updateItem(item: ContactModel): Single<Boolean>
+    fun updateItem(old: ContactModel, new: ContactModel): Single<Boolean>
 }

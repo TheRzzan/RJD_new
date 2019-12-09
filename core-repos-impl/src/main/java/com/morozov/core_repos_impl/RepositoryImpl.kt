@@ -61,9 +61,10 @@ class RepositoryImpl(private val dao: Dao): Repository {
         }
     }
 
-    override fun updateItem(item: ContactModel): Single<Boolean> {
+    override fun updateItem(old: ContactModel, new: ContactModel): Single<Boolean> {
         return Single.fromCallable {
-            return@fromCallable dao.updateItem(ContactModelConverter.convertToDbModel(item))
+            return@fromCallable dao.updateItem(ContactModelConverter.convertToDbModel(old),
+                                               ContactModelConverter.convertToDbModel(new))
         }
     }
 }
