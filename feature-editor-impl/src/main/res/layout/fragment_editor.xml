@@ -81,7 +81,6 @@
 
                 <ImageView
                         android:id="@+id/imageCamera"
-                        android:visibility="@{handler.photo != null ? View.INVISIBLE : View.VISIBLE}"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_photo_camera"
                         android:layout_width="@dimen/image_size"

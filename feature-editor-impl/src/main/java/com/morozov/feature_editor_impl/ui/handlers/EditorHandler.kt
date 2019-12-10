@@ -1,6 +1,5 @@
 package com.morozov.feature_editor_impl.ui.handlers
 
-import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.databinding.ObservableField
 import com.morozov.core_repos_api.ContactModel
@@ -10,7 +9,6 @@ abstract class EditorHandler(private val model: ContactModel) {
 
     val tmpContactModel: ContactModel
 
-    val photo: ObservableField<Drawable?> = ObservableField()
     val birthday: ObservableField<String?> = ObservableField()
     val isSaveEnabled: ObservableField<Boolean> = ObservableField()
 
