@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun startContactsListFeature() {
+        clearBackStack()
         contactsFeatureApi.contactsStarter().start(supportFragmentManager, R.id.contentMain,
             object : FeatureContactsCallback {
                 override fun onContactSelected(phone: String, position: Int) {
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         editorFeatureApi.editorStarter().start(isFriend, supportFragmentManager, R.id.contentMain,
             object : FeatureEditorCallback {
                 override fun onFinished() {
-                    onBackPressed()
+                    startContactsListFeature()
                 }
             })
     }
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         editorFeatureApi.editorStarter().start(contactNumber, supportFragmentManager, R.id.contentMain,
             object : FeatureEditorCallback {
                 override fun onFinished() {
-                    onBackPressed()
+                    startContactsListFeature()
                 }
             })
     }

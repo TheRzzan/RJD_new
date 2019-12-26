@@ -58,9 +58,11 @@ class ContactsFragment: Fragment(), OnItemClickListener {
             isAddClicked = !isAddClicked
         }
         buttonFriend.setOnClickListener {
+            MainObject.isFriends = true
             MainObject.callback?.onAddFriendClicked()
         }
         buttonColleague.setOnClickListener {
+            MainObject.isFriends = false
             MainObject.callback?.onAddColleagueClicked()
         }
 

@@ -18,50 +18,11 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
     private val contactsList: MutableList<ContactModel> = mutableListOf()
 
     init {
-//        val repository = MainObject.repository
-//        if (repository != null) {
-//            repository.addItem(
-//                ContactModel("Jeka", "Horfal", "", "44444",
-//                    true, "", null, Date(), null, false)
-//            )
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .subscribe({}, {})
-//
-//            repository.addItem(
-//                ContactModel("Sasha", "Fafin", "Lol", "12345",
-//                    true, "", null, Date(), null, false)
-//            )
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .subscribe({}, {})
-//
-//            repository.addItem(
-//                ContactModel("Aza", "Braza", "", "11111",
-//                    false, "", "Golem", Date(), null, false)
-//            )
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .subscribe({}, {})
-//
-//            repository.addItem(
-//                ContactModel("Koko", "Jambo", "", "222222",
-//                    false, "", "Garlem", Date(), null, false)
-//            )
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .subscribe({}, {})
-//
-//            repository.addItem(
-//                ContactModel("Hihi", "Hahi", "", "33333",
-//                    false, "", "Durko", Date(), null, false)
-//            )
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .subscribe({}, {})
-//        }
-
-        showAll()
+        when (MainObject.isFriends) {
+            null -> showAll()
+            true -> showFriends()
+            false -> showColleagues()
+        }
     }
 
     fun getContacts(): LiveData<ViewCommand> = contactsLiveData
@@ -74,6 +35,7 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
     }
 
     fun showAll() {
+        MainObject.isFriends = null
         observeList(Observer {
             contactsList.clear()
             contactsList.addAll(it)
@@ -82,6 +44,7 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
     }
 
     fun showFriends() {
+        MainObject.isFriends = true
         observeList(Observer {
                 contactsList.clear()
                 for (item in it) {
@@ -93,6 +56,7 @@ class ContactsViewModel: ViewModel(), ItemTouchHelperCallback {
     }
 
     fun showColleagues() {
+        MainObject.isFriends = false
         observeList(Observer {
             contactsList.clear()
             for (item in it) {

@@ -7,4 +7,5 @@ object MainObject {
 
     var repository: Repository? = null
     var callback: FeatureContactsCallback? = null
+    var isFriends: Boolean? = null
 }
